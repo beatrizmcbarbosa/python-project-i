@@ -56,7 +56,7 @@ Function 5 will calculate final cost
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
-* [Image shields](https://shields.io/)
+* [Img Shields](https://shields.io/)
 * [README Template](https://github.com/othneildrew/Best-README-Template)
 
 <!-- MARKDOWN LINKS & IMAGES -->
