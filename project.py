@@ -16,5 +16,20 @@ def main():
         )
 
 
+def duration(): ...
+
+
+def holiday_options(): ...
+
+
+def flight_search(): ...
+
+
+def hotels(): ...
+
+
+def estimate(): ...
+
+
 if __name__ == "__main__":
     main()
