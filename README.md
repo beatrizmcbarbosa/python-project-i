@@ -56,5 +56,9 @@ Function 5 will calculate final cost
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
+* [Image shields](https://shields.io/)
+* [README Template](https://github.com/othneildrew/Best-README-Template)
+
+<!-- MARKDOWN LINKS & IMAGES -->
 [Python]: https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54
 [Python-url]: https://www.python.org/
