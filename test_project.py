@@ -1,3 +1,6 @@
+from project import duration, holiday_options, flights_search, hotels, estimate
+
+
 def test_duration(): ...
 
 
