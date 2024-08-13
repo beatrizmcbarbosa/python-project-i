@@ -66,11 +66,11 @@ def duration(x, y):
     return (arrival_date - departure_date).days
 
 
-def holiday_options():
+def holiday():
     # Function 2 will, based on city selection, ask the user what they are looking to buy today (Flights, Flight+Hotel, Hotels) and better understand their preferences.
-    options = {"Flights", "Hotel", "Both"}
+    options = {"Flights", "Hotels", "Both"}
     option = (
-        input(f"What are you looking for today: Flights, Hotel, or Both? ")
+        input(f"What are you looking for today: Flights, Hotels, or Both? ")
         .strip()
         .capitalize()
     )
@@ -81,7 +81,7 @@ def holiday_options():
         print("This is not a valid option")
 
 
-def flight_search(): ...
+def flights(): ...
 
 
 def hotels(): ...
