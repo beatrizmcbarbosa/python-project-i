@@ -16,7 +16,6 @@ def main():
     while tries < 3:
         tries += 1
         continent_invalid = 0
-        # city_invalid = 0
         try:
             continent = (
                 input("In which continent will your holiday be? ").strip().capitalize()
@@ -67,7 +66,19 @@ def duration(x, y):
     return (arrival_date - departure_date).days
 
 
-def holiday_options(): ...
+def holiday_options():
+    # Function 2 will, based on city selection, ask the user what they are looking to buy today (Flights, Flight+Hotel, Hotels) and better understand their preferences.
+    options = {"Flights", "Hotel", "Both"}
+    option = (
+        input(f"What are you looking for today: Flights, Hotel, or Both? ")
+        .strip()
+        .capitalize()
+    )
+
+    if option in options:
+        print(option)
+    else:
+        print("This is not a valid option")
 
 
 def flight_search(): ...
