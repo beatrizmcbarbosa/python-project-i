@@ -31,7 +31,17 @@ def main():
                     .capitalize()
                 )
 
-                break
+                if city in destinations[continent]:
+                    departure = input(
+                        f"When would you like to go?\nPlease answer in the format YYYY-MM-DD: "
+                    )
+                    arrival = input(
+                        f"And come back?\nPlease answer in the format YYYY-MM-DD: "
+                    )
+                    print(duration(departure, arrival))
+                    break
+                else:
+                    print("It seems this city is not part of our offer.")
 
             if continent not in destinations:
                 continent_invalid += 1
@@ -42,13 +52,6 @@ def main():
 
         except:
             sys.exit("Invalid input")
-
-
-"""    departure = input(
-        f"When would you like to go?\nPlease answer in the format YYYY-MM-DD: "
-    )
-    arrival = input(f"And come back?\nPlease answer in the format YYYY-MM-DD: ")
-    print(duration(departure, arrival))"""
 
 
 def duration(x, y):
