@@ -76,7 +76,7 @@ def holiday_options():
     )
 
     if option in options:
-        print(option)
+        return option
     else:
         print("This is not a valid option")
 
