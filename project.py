@@ -67,7 +67,6 @@ def duration(x, y):
 
 
 def holiday():
-    # Function 2 will, based on city selection, ask the user what they are looking to buy today (Flights, Flight+Hotel, Hotels) and better understand their preferences.
     options = {"Flights", "Hotels", "Both"}
     option = (
         input(f"What are you looking for today: Flights, Hotels, or Both? ")
