@@ -11,17 +11,44 @@ destinations = {
 
 
 def main():
-    continent = input("In which continent will your holiday be? ").strip().capitalize()
+    tries = 0
+    # prompt user for a continent:
+    while tries < 3:
+        tries += 1
+        continent_invalid = 0
+        # city_invalid = 0
+        try:
+            continent = (
+                input("In which continent will your holiday be? ").strip().capitalize()
+            )
 
-    if continent in destinations:
-        city = input(
-            f"We offer the below options in {continent}:\n{destinations[continent]}\nPlease type the destination where you would like to go: "
-        )
-    departure = input(
-        f"We are so happy you want to travel to {city}. When would you like to go? Please answer in the format YYYY-MM-DD: "
+            if continent in destinations:
+                city = (
+                    input(
+                        f"We offer the below options in {continent}:\n{destinations[continent]}\nPlease type the destination where you would like to go: "
+                    )
+                    .strip()
+                    .capitalize()
+                )
+
+                break
+
+            if continent not in destinations:
+                continent_invalid += 1
+                # If the user has not typed a valid continent after 3 tries, exit
+                if continent_invalid == 2:
+                    print("That is not a valid continent. Please try again")
+                    break
+
+        except:
+            sys.exit("Invalid input")
+
+
+"""    departure = input(
+        f"When would you like to go?\nPlease answer in the format YYYY-MM-DD: "
     )
-    arrival = input(f"And come back? Please answer in the format YYYY-MM-DD: ")
-    print(duration(departure, arrival))
+    arrival = input(f"And come back?\nPlease answer in the format YYYY-MM-DD: ")
+    print(duration(departure, arrival))"""
 
 
 def duration(x, y):
