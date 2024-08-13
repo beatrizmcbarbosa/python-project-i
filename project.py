@@ -1,3 +1,6 @@
+from datetime import date
+import sys
+
 destinations = {
     "Europe": ["Lisboa", "Paris", "Madrid"],
     "Asia": ["Mumbai", "Tokyo"],
@@ -17,10 +20,21 @@ def main():
     departure = input(
         f"We are so happy you want to travel to {city}. When would you like to go? Please answer in the format YYYY-MM-DD: "
     )
-    arrival = input(f"And come back? (format YYYY-MM-DD)")
+    arrival = input(f"And come back? Please answer in the format YYYY-MM-DD: ")
+    print(duration(departure, arrival))
 
 
-def duration(): ...
+def duration(x, y):
+    # If dates are valid, convert to iso
+    try:
+        departure_date = date.fromisoformat(x)
+        arrival_date = date.fromisoformat(y)
+
+    # If date is not valid, exit
+    except:
+        sys.exit("Invalid dates")
+
+    return (arrival_date - departure_date).days
 
 
 def holiday_options(): ...
