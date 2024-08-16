@@ -43,7 +43,8 @@ def main():
                     arrival = input(
                         f"And come back?\nPlease answer in the format YYYY-MM-DD: "
                     )
-                    print(duration(departure, arrival))
+                    print(f"{duration(departure, arrival)} days")
+                    print(hotels())
                     break
                 else:
                     print("It seems this city is not part of our offer.")
@@ -90,7 +91,14 @@ def holiday():
 def flights(): ...
 
 
-def hotels(): ...
+def hotels():
+    try:
+        with open("hotels.csv") as file:
+            reader = csv.reader(file)
+            return tabulate(reader, headers="firstrow", tablefmt="grid")
+    # If file does not exist, raise FileNotFoundError and sys.exit
+    except FileNotFoundError:
+        sys.exit("File not found")
 
 
 def estimate(): ...
