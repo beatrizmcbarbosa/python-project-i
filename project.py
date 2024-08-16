@@ -99,7 +99,13 @@ def hotels(city):
                 return f"Low-range: {row[1]}\nMid-range: {row[2]}\nHigh-range: {row[3]}"
 
 
-def estimate(): ...
+def estimate():
+    # For hotel only
+    ...
+    # For flight
+    ...
+    # Fo hotel + flight
+    ...
 
 
 if __name__ == "__main__":
