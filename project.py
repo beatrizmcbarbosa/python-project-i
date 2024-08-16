@@ -1,7 +1,6 @@
 from datetime import date
 import sys
 import csv
-from tabulate import tabulate
 
 destinations = {
     "Europe": ["Lisboa", "Madrid", "Paris"],
