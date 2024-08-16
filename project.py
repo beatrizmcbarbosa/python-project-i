@@ -1,8 +1,10 @@
 from datetime import date
 import sys
+import csv
+from tabulate import tabulate
 
 destinations = {
-    "Europe": ["Lisboa", "Paris", "Madrid"],
+    "Europe": ["Lisboa", "Madrid", "Paris"],
     "Asia": ["Mumbai", "Tokyo"],
     "Oceania": ["Sydney", "Suva"],
     "Africa": ["Nairobi", "Abidjan", "Luanda"],
@@ -15,7 +17,7 @@ destinations = {
 
 def main():
     tries = 0
-    # prompt user for a continent:
+    # Prompt user for a continent:
     while tries < 3:
         tries += 1
         continent_invalid = 0
@@ -33,6 +35,7 @@ def main():
                     .capitalize()
                 )
 
+                # Prompt user to select city option within their continent of choice
                 if city in destinations[continent]:
                     departure = input(
                         f"When would you like to go?\nPlease answer in the format YYYY-MM-DD: "
@@ -71,6 +74,7 @@ def duration(x, y):
 
 def holiday():
     options = {"Flights", "Hotels", "Both"}
+    # Prompt user for choice of type of holiday
     option = (
         input(f"What are you looking for today: Flights, Hotels, or Both? ")
         .strip()
