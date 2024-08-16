@@ -9,6 +9,9 @@ destinations = {
     "America": ["Lima", "Ciudad do México", "Dallas"],
 }
 
+# Missing: typehints
+# Missing: docstring
+
 
 def main():
     tries = 0
