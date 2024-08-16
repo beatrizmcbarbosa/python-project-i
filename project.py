@@ -44,7 +44,7 @@ def main():
                         f"And come back?\nPlease answer in the format YYYY-MM-DD: "
                     )
                     print(f"{duration(departure, arrival)} days")
-                    print(hotels())
+                    print(hotels(city))
                     break
                 else:
                     print("It seems this city is not part of our offer.")
@@ -91,14 +91,12 @@ def holiday():
 def flights(): ...
 
 
-def hotels():
-    try:
-        with open("hotels.csv") as file:
-            reader = csv.reader(file)
-            return tabulate(reader, headers="firstrow", tablefmt="grid")
-    # If file does not exist, raise FileNotFoundError and sys.exit
-    except FileNotFoundError:
-        sys.exit("File not found")
+def hotels(city):
+    # Read csv file, find rows with {city} and return the prices
+    with open("hotels.csv", newline="") as file:
+        for row in csv.reader(file):
+            if city in row[0]:
+                return f"Low-range: {row[1]}\nMid-range: {row[2]}\nHigh-range: {row[3]}"
 
 
 def estimate(): ...
