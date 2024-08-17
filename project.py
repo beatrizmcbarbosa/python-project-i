@@ -43,7 +43,7 @@ def main():
                         f"And come back?\nPlease answer in the format YYYY-MM-DD: "
                     )
                     print(f"{duration(departure, arrival)} days")
-                    print(hotels(city))
+                    print(hotel_estimate(departure, arrival, city))
                     break
                 else:
                     print("It seems this city is not part of our offer.")
@@ -97,24 +97,25 @@ def hotels(city):
             if city in row[0]:
                 selection = (
                     input(
-                        f"Low-range: €{row[1]}\nMid-range: €{row[2]}\nHigh-range: €{row[3]}\nSelect one: "
+                        f"Low-range: {row[1]}\nMid-range: {row[2]}\nHigh-range: {row[3]}\nSelect one: "
                     )
                     .strip()
                     .capitalize()
                 )
                 if selection == "Low-range":
                     return row[1]
-                if selection == "Mid-range":
+                elif selection == "Mid-range":
                     return row[2]
-                if selection == "High-range":
+                elif selection == "High-range":
                     return row[3]
                 else:
                     return f"Invalid option."
 
 
-def hotel_estimate(days):
+def hotel_estimate(x, y, city):
     # For hotel only
-    ...
+    stay = int(duration(x, y)) * int(hotels(city))
+    return f"€{stay:,.2f}"
 
 
 def flight_estimate(departure, arrival):
