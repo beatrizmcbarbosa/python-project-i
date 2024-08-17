@@ -99,7 +99,7 @@ def hotels(city):
                 # Prompt user for selection of hotel range
                 selection = (
                     input(
-                        f"Low-range: {row[1]}\nMid-range: {row[2]}\nHigh-range: {row[3]}\nSelect one: "
+                        f"Low-range: €{row[1]}\nMid-range: €{row[2]}\nHigh-range: €{row[3]}\nSelect one: "
                     )
                     .strip()
                     .capitalize()
