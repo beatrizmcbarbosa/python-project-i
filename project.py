@@ -97,7 +97,7 @@ def hotels(city):
             if city in row[0]:
                 selection = (
                     input(
-                        f"Low-range: {row[1]}\nMid-range: {row[2]}\nHigh-range: {row[3]}\nSelect one: "
+                        f"Low-range: €{row[1]}\nMid-range: €{row[2]}\nHigh-range: €{row[3]}\nSelect one: "
                     )
                     .strip()
                     .capitalize()
