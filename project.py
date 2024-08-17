@@ -95,7 +95,21 @@ def hotels(city):
     with open("hotels.csv", newline="") as file:
         for row in csv.reader(file):
             if city in row[0]:
-                return f"Low-range: {row[1]}\nMid-range: {row[2]}\nHigh-range: {row[3]}"
+                selection = (
+                    input(
+                        f"Low-range: {row[1]}\nMid-range: {row[2]}\nHigh-range: {row[3]}\nSelect one: "
+                    )
+                    .strip()
+                    .capitalize()
+                )
+                if selection == "Low-range":
+                    return row[1]
+                if selection == "Mid-range":
+                    return row[2]
+                if selection == "High-range":
+                    return row[3]
+                else:
+                    return f"Invalid option."
 
 
 def hotel_estimate(days):
@@ -104,7 +118,7 @@ def hotel_estimate(days):
 
 
 def flight_estimate(departure, arrival):
-    # For flight
+    # For flight only
     ...
 
 
