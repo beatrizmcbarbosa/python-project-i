@@ -2,6 +2,7 @@ from datetime import date
 import sys
 import csv
 
+# Destinations available at the travel agency
 destinations = {
     "Europe": ["Lisboa", "Madrid", "Paris"],
     "Asia": ["Mumbai", "Tokyo"],
@@ -16,7 +17,7 @@ destinations = {
 
 def main():
     tries = 0
-    # Prompt user for a continent:
+    # Prompt user for a continent and exit after 3 tries:
     while tries < 3:
         tries += 1
         continent_invalid = 0
@@ -24,7 +25,7 @@ def main():
             continent = (
                 input("In which continent will your holiday be? ").strip().capitalize()
             )
-
+            # If the continent exists, display cities available in offer
             if continent in destinations:
                 city = (
                     input(
@@ -47,10 +48,9 @@ def main():
                     break
                 else:
                     print("It seems this city is not part of our offer.")
-
+            # If the user has not typed a valid continent after 3 tries, exit
             if continent not in destinations:
                 continent_invalid += 1
-                # If the user has not typed a valid continent after 3 tries, exit
                 if continent_invalid == 2:
                     print("That is not a valid continent. Please try again")
                     break
@@ -81,6 +81,7 @@ def holiday():
         .capitalize()
     )
 
+    # If user holiday choice is available, return it
     if option in options:
         return option
     else:
@@ -95,6 +96,7 @@ def hotels(city):
     with open("hotels.csv", newline="") as file:
         for row in csv.reader(file):
             if city in row[0]:
+                # Prompt user for selection of hotel range
                 selection = (
                     input(
                         f"Low-range: {row[1]}\nMid-range: {row[2]}\nHigh-range: {row[3]}\nSelect one: "
@@ -102,6 +104,7 @@ def hotels(city):
                     .strip()
                     .capitalize()
                 )
+                # Return selected hotel range night cost
                 if selection == "Low-range":
                     return row[1]
                 elif selection == "Mid-range":
@@ -113,7 +116,7 @@ def hotels(city):
 
 
 def hotel_estimate(x, y, city):
-    # For hotel only
+    # For hotel only, multiply number of days per night cost, based on hotel range selection
     stay = int(duration(x, y)) * int(hotels(city))
     return f"€{stay:,.2f}"
 
