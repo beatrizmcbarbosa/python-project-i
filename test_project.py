@@ -1,4 +1,12 @@
-from project import duration, holiday, flights, hotels, estimate
+from project import (
+    duration,
+    holiday,
+    flights,
+    hotels,
+    hotel_estimate,
+    flight_estimate,
+    package_estimate,
+)
 import pytest
 
 
@@ -19,4 +27,10 @@ def test_hotels():
     assert hotels("Lisbon") == None
 
 
-def test_estimate(): ...
+def test_hotel_estimate(): ...
+
+
+def test_flight_estimate(): ...
+
+
+def test_package_estimate(): ...

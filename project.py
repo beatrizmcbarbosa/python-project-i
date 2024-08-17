@@ -98,12 +98,19 @@ def hotels(city):
                 return f"Low-range: {row[1]}\nMid-range: {row[2]}\nHigh-range: {row[3]}"
 
 
-def estimate():
+def hotel_estimate(days):
     # For hotel only
     ...
+
+
+def flight_estimate(departure, arrival):
     # For flight
     ...
-    # Fo hotel + flight
+
+
+def package_estimate():
+    # For hotel + flight
+    # Get total from flight_estimate and add it to hotel_estimate
     ...
 
 
