@@ -11,6 +11,9 @@ destinations = {
     "America": ["Lima", "Ciudad do México", "Dallas"],
 }
 
+options = {"Flights", "Hotels", "Both"}
+
+
 # Missing: typehints
 # Missing: docstring
 
@@ -44,6 +47,15 @@ def main():
                         f"And come back?\nPlease answer in the format YYYY-MM-DD: "
                     )
                     print(f"{duration(departure, arrival)} days")
+                    # Prompt user for choice of type of holiday
+                    option = (
+                        input(
+                            f"What are you looking for today: Flights, Hotels, or Both? "
+                        )
+                        .strip()
+                        .capitalize()
+                    )
+                    print(holiday(option))
                     print(hotel_estimate(departure, arrival, city))
                     break
                 else:
@@ -72,20 +84,12 @@ def duration(x, y):
     return (arrival_date - departure_date).days
 
 
-def holiday():
-    options = {"Flights", "Hotels", "Both"}
-    # Prompt user for choice of type of holiday
-    option = (
-        input(f"What are you looking for today: Flights, Hotels, or Both? ")
-        .strip()
-        .capitalize()
-    )
-
+def holiday(option):
     # If user holiday choice is available, return it
     if option in options:
         return option
     else:
-        print("This is not a valid option")
+        return "This is not a valid option"
 
 
 def flights(): ...
