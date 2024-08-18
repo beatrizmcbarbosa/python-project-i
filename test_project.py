@@ -26,7 +26,10 @@ def test_holiday():
 def test_flight(): ...
 
 
-def test_hotels(): ...
+def test_hotels():
+    assert hotels("Lisboa", "Mid") == "120"
+    assert hotels("Tokyo", "High") == "150"
+    assert hotels("Barcelona", "Luxury") == None
 
 
 def test_hotel_estimate(): ...
