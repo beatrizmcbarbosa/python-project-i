@@ -101,16 +101,13 @@ def hotels(city, tier):
     with open("hotels.csv", newline="") as file:
         reader = csv.reader(file)
         for row in reader:
-            try:
-                if row[0] == city:
-                    if tier == "Low":
-                        return row[1]
-                    if tier == "Mid":
-                        return row[2]
-                    if tier == "High":
-                        return row[3]
-            except:
-                raise ValueError("Invalid city")
+            if row[0] == city:
+                if tier == "Low":
+                    return row[1]
+                if tier == "Mid":
+                    return row[2]
+                if tier == "High":
+                    return row[3]
 
 
 def hotel_estimate(x, y, city, tier):
