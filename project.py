@@ -55,9 +55,18 @@ def main():
                         .strip()
                         .capitalize()
                     )
-                    print(holiday(option))
-                    tier = input("Hotel tier, Low, Mid or High? ").strip().capitalize()
-                    print(hotel_estimate(departure, arrival, city, tier))
+                    # If user wants flights, present flights estimate from API
+                    if option == "Flights":
+                        print(holiday(option))
+                    # If user wants hotels, prompt user for hotel tier and present price
+                    if option == "Hotels":
+                        tier = (
+                            input("Hotel tier, Low, Mid or High? ").strip().capitalize()
+                        )
+                        print(hotel_estimate(departure, arrival, city, tier))
+                    # If user wants both, present sum of hotels and flights estimates
+                    if option == "Both":
+                        print(holiday(option))
                     break
                 else:
                     print("This city is not part of our offer.")
