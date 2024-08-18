@@ -56,10 +56,11 @@ def main():
                         .capitalize()
                     )
                     print(holiday(option))
-                    print(hotel_estimate(departure, arrival, city))
+                    tier = input("Hotel tier, Low, Mid or High? ").strip().capitalize()
+                    print(hotel_estimate(departure, arrival, city, tier))
                     break
                 else:
-                    print("It seems this city is not part of our offer.")
+                    print("This city is not part of our offer.")
             # If the user has not typed a valid continent after 3 tries, exit
             if continent not in destinations:
                 continent_invalid += 1
@@ -92,36 +93,29 @@ def holiday(option):
         return "This is not a valid option"
 
 
-def flights(): ...
+def flights(origin): ...
 
 
-def hotels(city):
+def hotels(city, tier):
     # Read csv file, find rows with {city} and return the prices
     with open("hotels.csv", newline="") as file:
-        for row in csv.reader(file):
-            if city in row[0]:
-                # Prompt user for selection of hotel range
-                selection = (
-                    input(
-                        f"Low-range: €{row[1]}\nMid-range: €{row[2]}\nHigh-range: €{row[3]}\nSelect one: "
-                    )
-                    .strip()
-                    .capitalize()
-                )
-                # Return selected hotel range night cost
-                if selection == "Low-range":
-                    return row[1]
-                elif selection == "Mid-range":
-                    return row[2]
-                elif selection == "High-range":
-                    return row[3]
-                else:
-                    return f"Invalid option."
+        reader = csv.reader(file)
+        for row in reader:
+            try:
+                if row[0] == city:
+                    if tier == "Low":
+                        return row[1]
+                    if tier == "Mid":
+                        return row[2]
+                    if tier == "High":
+                        return row[3]
+            except:
+                raise ValueError("Invalid city")
 
 
-def hotel_estimate(x, y, city):
+def hotel_estimate(x, y, city, tier):
     # For hotel only, multiply number of days per night cost, based on hotel range selection
-    stay = int(duration(x, y)) * int(hotels(city))
+    stay = int(duration(x, y)) * int(hotels(city, tier))
     return f"€{stay:,.2f}"
 
 
