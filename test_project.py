@@ -32,7 +32,9 @@ def test_hotels():
     assert hotels("Barcelona", "Luxury") == None
 
 
-def test_hotel_estimate(): ...
+def test_hotel_estimate():
+    assert hotel_estimate("2024-09-10", "2024-09-20", "Lisboa", "Mid") == "€1,200.00"
+    assert hotel_estimate("2024-09-10", "2024-09-20", "Tokyo", "High") == "€1,500.00"
 
 
 def test_flight_estimate(): ...
