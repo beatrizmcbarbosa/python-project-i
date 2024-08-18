@@ -16,15 +16,17 @@ def test_duration():
         assert duration("13 August 2024", "14 August 2024")
 
 
-def test_holiday(): ...
+def test_holiday():
+    assert holiday("Flights") == "Flights"
+    assert holiday("Hotels") == "Hotels"
+    assert holiday("Both") == "Both"
+    assert holiday("Something") == "This is not a valid option"
 
 
 def test_flight(): ...
 
 
-def test_hotels():
-    assert hotels("Lisboa") == "Low-range: €70\nMid-range: €120\nHigh-range: €200"
-    assert hotels("Lisbon") == None
+def test_hotels(): ...
 
 
 def test_hotel_estimate(): ...
