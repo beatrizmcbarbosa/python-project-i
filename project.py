@@ -7,11 +7,32 @@ import creds
 
 # Destinations available at the travel agency
 destinations = {
-    "Europe": ["Lisboa", "Madrid", "Paris"],
-    "Asia": ["Mumbai", "Tokyo"],
-    "Oceania": ["Sydney", "Suva"],
-    "Africa": ["Nairobi", "Abidjan", "Luanda"],
-    "America": ["Lima", "Ciudad do México", "Dallas"],
+    "Amsterdam": {"name": "Amsterdam", "IATA": "AMS"},
+    "Athens": {"name": "Athens", "IATA": "ATH"},
+    "Berlin": {"name": "Berlin", "IATA": "BER"},
+    "Bratislava": {"name": "Bratislava", "IATA": "BTS"},
+    "Brussels": {"name": "Brussels", "IATA": "BRU"},
+    "Bucharest": {"name": "Bucharest", "IATA": "OTP"},
+    "Budapest": {"name": "Budapest", "IATA": "BUD"},
+    "Copenhagen": {"name": "Copenhagen", "IATA": "CPH"},
+    "Dublin": {"name": "Dublin", "IATA": "DUB"},
+    "Helsinki": {"name": "Helsinki", "IATA": "HEL"},
+    "Lisboa": {"name": "Lisboa", "IATA": "LIS"},
+    "Ljubljana": {"name": "Ljubljana", "IATA": "LJU"},
+    "Madrid": {"name": "Madrid", "IATA": "MAD"},
+    "Nicosia": {"name": "Nicosia", "IATA": "NIC"},
+    "PARIS": {"name": "PARIS", "IATA": "CDG"},
+    "Prague": {"name": "Prague", "IATA": "PRG"},
+    "Riga": {"name": "Riga", "IATA": "RIX"},
+    "Rome": {"name": "Rome", "IATA": "RME"},
+    "Sofia": {"name": "Sofia", "IATA": "SOF"},
+    "Stockholm": {"name": "Stockholm", "IATA": "ARN"},
+    "Tallinn": {"name": "Tallinn", "IATA": "TLL"},
+    "Malta": {"name": "Malta", "IATA": "MLA"},
+    "Vienna": {"name": "Vienna", "IATA": "VIE"},
+    "Vilnius": {"name": "Vilnius", "IATA": "VNO"},
+    "Warsaw": {"name": "Warsaw", "IATA": "WAW"},
+    "Zagreb": {"name": "Zagreb", "IATA": "ZAG"},
 }
 
 options = {"Flights", "Hotels", "Both"}
