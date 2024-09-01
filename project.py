@@ -114,7 +114,7 @@ def flights(fromEntityId, toEntityId, departDate, returnDate):
     payload = {
         "market": "US",
         "locale": "en-US",
-        "currency": "USD",
+        "currency": "EUR",
         "adults": 1,
         "children": 0,
         "infants": 0,
@@ -165,7 +165,7 @@ def hotels(city, tier):
 def hotel_estimate(x, y, city, tier):
     # For hotel only, multiply number of days per night cost, based on hotel range selection
     stay = int(duration(x, y)) * int(hotels(city, tier))
-    return f"${stay:,.2f}"
+    return f"€{stay:,.2f}"
 
 
 def flight_estimate(departDate, returnDatee):
