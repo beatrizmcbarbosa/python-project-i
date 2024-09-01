@@ -1,13 +1,27 @@
 Destination,Hotel Low,Hotel Mid,Hotel High
+Amsterdam,70,120,200
+Athens,40,80,170
+Berlin,70,120,200
+Bratislava,40,80,170
+Brussels,70,120,200
+Bucharest,30,70,150
+Budapest,30,70,150
+Copenhagen,90,150,250
+Dublin,90,150,250
+Helsinki,90,150,250
 Lisboa,70,120,200
+Ljubljana,30,70,150
 Madrid,70,120,200
+Nicosia,30,70,150
 Paris,80,120,200
-Mumbai,30,80,110
-Tokyo,50,80,150
-Sydney,100,160,250
-Suva,50,100,180
-Nairobi,30,90,120
-Abidjan,30,70,120
-Luanda,40,80,200
-Lima,30,60,150
-Ciudad do México,30,60,150
+Prague,30,70,150
+Riga,30,70,150
+Rome,70,120,200
+Sofia,30,70,150
+Stockholm,90,150,250
+Tallinn,30,70,150
+Valletta,30,70,150
+Vienna,90,150,250
+Vilnius,30,70,150
+Warsaw,30,70,150
+Zagreb,30,70,150
