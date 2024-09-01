@@ -21,10 +21,10 @@ destinations = {
     "Ljubljana": {"name": "Ljubljana", "IATA": "LJU"},
     "Madrid": {"name": "Madrid", "IATA": "MAD"},
     "Nicosia": {"name": "Nicosia", "IATA": "NIC"},
-    "PARIS": {"name": "PARIS", "IATA": "CDG"},
+    "Paris": {"name": "PARIS", "IATA": "CDG"},
     "Prague": {"name": "Prague", "IATA": "PRG"},
     "Riga": {"name": "Riga", "IATA": "RIX"},
-    "Rome": {"name": "Rome", "IATA": "RME"},
+    "Rome": {"name": "Rome", "IATA": "FCO"},
     "Sofia": {"name": "Sofia", "IATA": "SOF"},
     "Stockholm": {"name": "Stockholm", "IATA": "ARN"},
     "Tallinn": {"name": "Tallinn", "IATA": "TLL"},
@@ -56,6 +56,7 @@ def main():
             city = input("Where would you like to go? ").strip().capitalize()
             if city in destinations:
                 city_code = destinations[city]["IATA"]
+                print(f"Thanks for choosing {city}!")
                 print(city_code)
 
                 departDate = input(
@@ -133,7 +134,11 @@ def flights(fromEntityId, toEntityId, departDate, returnDate):
                 "fromEntityId": fromEntityId,
                 "toEntityId": toEntityId,
                 "departDate": departDate,
-                "returnDate": returnDate,
+            },
+            {
+                "fromEntityId": toEntityId,
+                "toEntityId": fromEntityId,
+                "departDate": returnDate,
             },
         ],
     }
