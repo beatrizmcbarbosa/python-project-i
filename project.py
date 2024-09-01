@@ -181,11 +181,6 @@ def hotel_estimate(x, y, city, tier):
     return f"€{stay:,.2f}"
 
 
-def flight_estimate(departDate, returnDatee):
-    # For flight only
-    ...
-
-
 def package_estimate():
     # For hotel + flight
     # Get total from flight_estimate and add it to hotel_estimate
