@@ -1,6 +1,9 @@
 from datetime import date
 import sys
 import csv
+import requests
+import json
+import creds
 
 # Destinations available at the travel agency
 destinations = {
@@ -40,13 +43,13 @@ def main():
 
                 # Prompt user to select city option within their continent of choice
                 if city in destinations[continent]:
-                    departure = input(
+                    departDate = input(
                         f"When would you like to go?\nPlease answer in the format YYYY-MM-DD: "
                     )
-                    arrival = input(
+                    returnDate = input(
                         f"And come back?\nPlease answer in the format YYYY-MM-DD: "
                     )
-                    print(f"{duration(departure, arrival)} days")
+                    print(f"{duration(departDate, returnDate)} days")
                     # Prompt user for choice of type of holiday
                     option = (
                         input(
@@ -57,13 +60,14 @@ def main():
                     )
                     # If user wants flights, present flights estimate from API
                     if option == "Flights":
-                        print(holiday(option))
+                        origin = input("Where are you flying from? ")
+                        print(flights(origin, city, departDate, returnDate))
                     # If user wants hotels, prompt user for hotel tier and present price
                     if option == "Hotels":
                         tier = (
                             input("Hotel tier, Low, Mid or High? ").strip().capitalize()
                         )
-                        print(hotel_estimate(departure, arrival, city, tier))
+                        print(hotel_estimate(departDate, returnDate, city, tier))
                     # If user wants both, present sum of hotels and flights estimates
                     if option == "Both":
                         print(holiday(option))
@@ -84,14 +88,14 @@ def main():
 def duration(x, y):
     # If dates are valid, convert to iso
     try:
-        departure_date = date.fromisoformat(x)
-        arrival_date = date.fromisoformat(y)
+        departDate = date.fromisoformat(x)
+        returnDate = date.fromisoformat(y)
 
     # If date is not valid, exit
     except:
         sys.exit("Invalid dates")
 
-    return (arrival_date - departure_date).days
+    return (returnDate - departDate).days
 
 
 def holiday(option):
@@ -102,7 +106,46 @@ def holiday(option):
         return "This is not a valid option"
 
 
-def flights(origin): ...
+def flights(fromEntityId, toEntityId, departDate, returnDate):
+    # Retrieve flight prices for origin, destination, and dates
+
+    url = "https://sky-scanner3.p.rapidapi.com/flights/search-multi-city"
+
+    payload = {
+        "market": "US",
+        "locale": "en-US",
+        "currency": "USD",
+        "adults": 1,
+        "children": 0,
+        "infants": 0,
+        "cabinClass": "economy",
+        "stops": ["direct", "1stop", "2stops"],
+        "flights": [
+            {
+                "fromEntityId": fromEntityId,
+                "toEntityId": toEntityId,
+                "departDate": departDate,
+                "returnDate": returnDate,
+            },
+        ],
+    }
+    headers = {
+        "x-rapidapi-key": f"{creds.api_key}",
+        "x-rapidapi-host": "sky-scanner3.p.rapidapi.com",
+        "Content-Type": "application/json",
+    }
+
+    response = requests.post(url, headers=headers, data=json.dumps(payload))
+
+    if response.status_code == 200:
+        try:
+            return response.json()["data"]["filterStats"]["stopPrices"]["direct"][
+                "formattedPrice"
+            ]
+        except KeyError:
+            return f"There are no flights for this dates and destination."
+    else:
+        return f"Error: {response.status_code}, {response.text}"
 
 
 def hotels(city, tier):
@@ -122,10 +165,10 @@ def hotels(city, tier):
 def hotel_estimate(x, y, city, tier):
     # For hotel only, multiply number of days per night cost, based on hotel range selection
     stay = int(duration(x, y)) * int(hotels(city, tier))
-    return f"€{stay:,.2f}"
+    return f"${stay:,.2f}"
 
 
-def flight_estimate(departure, arrival):
+def flight_estimate(departDate, returnDatee):
     # For flight only
     ...
 
