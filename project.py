@@ -44,64 +44,51 @@ options = {"Flights", "Hotels", "Both"}
 
 def main():
     tries = 0
-    # Prompt user for a continent and exit after 3 tries:
+    # Display destination options
+    print("We offer the following destinations:")
+    for i in destinations:
+        print("- ", destinations[i]["name"])
+    # Prompt user for city choice and exit after 3 tries
     while tries < 3:
         tries += 1
-        continent_invalid = 0
+        city_invalid = 0
         try:
-            continent = (
-                input("In which continent will your holiday be? ").strip().capitalize()
-            )
-            # If the continent exists, display cities available in offer
-            if continent in destinations:
-                city = (
-                    input(
-                        f"We offer the below options in {continent}:\n{destinations[continent]}\nPlease type the destination where you would like to go: "
-                    )
+            city = input("Where would you like to go? ").strip().capitalize()
+            if city in destinations:
+                city_code = destinations[city]["IATA"]
+                print(city_code)
+
+                departDate = input(
+                    f"When would you like to go?\nPlease answer in the format YYYY-MM-DD: "
+                )
+                returnDate = input(
+                    f"And come back?\nPlease answer in the format YYYY-MM-DD: "
+                )
+                print(f"{duration(departDate, returnDate)} days")
+                # Prompt user for choice of type of holiday
+                option = (
+                    input(f"What are you looking for today: Flights, Hotels, or Both? ")
                     .strip()
                     .capitalize()
                 )
-
-                # Prompt user to select city option within their continent of choice
-                if city in destinations[continent]:
-                    departDate = input(
-                        f"When would you like to go?\nPlease answer in the format YYYY-MM-DD: "
-                    )
-                    returnDate = input(
-                        f"And come back?\nPlease answer in the format YYYY-MM-DD: "
-                    )
-                    print(f"{duration(departDate, returnDate)} days")
-                    # Prompt user for choice of type of holiday
-                    option = (
-                        input(
-                            f"What are you looking for today: Flights, Hotels, or Both? "
-                        )
-                        .strip()
-                        .capitalize()
-                    )
-                    # If user wants flights, present flights estimate from API
-                    if option == "Flights":
-                        origin = input("Where are you flying from? ")
-                        print(flights(origin, city, departDate, returnDate))
-                    # If user wants hotels, prompt user for hotel tier and present price
-                    if option == "Hotels":
-                        tier = (
-                            input("Hotel tier, Low, Mid or High? ").strip().capitalize()
-                        )
-                        print(hotel_estimate(departDate, returnDate, city, tier))
-                    # If user wants both, present sum of hotels and flights estimates
-                    if option == "Both":
-                        print(holiday(option))
+                # If user wants flights, present flights estimate from API
+                if option == "Flights":
+                    origin = input("Where are you flying from? ")
+                    print(flights(origin, city_code, departDate, returnDate))
+                # If user wants hotels, prompt user for hotel tier and present price
+                if option == "Hotels":
+                    tier = input("Hotel tier, Low, Mid or High? ").strip().capitalize()
+                    print(hotel_estimate(departDate, returnDate, city, tier))
+                # If user wants both, present sum of hotels and flights estimates
+                if option == "Both":
+                    print(holiday(option))
+                break
+            # If the user has not typed a valid city after 3 tries, exit
+            if city not in destinations:
+                city_invalid += 1
+                if city_invalid == 2:
+                    print("That is not a valid city. Please try again")
                     break
-                else:
-                    print("This city is not part of our offer.")
-            # If the user has not typed a valid continent after 3 tries, exit
-            if continent not in destinations:
-                continent_invalid += 1
-                if continent_invalid == 2:
-                    print("That is not a valid continent. Please try again")
-                    break
-
         except:
             sys.exit("Invalid input")
 
