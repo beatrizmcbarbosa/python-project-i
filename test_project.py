@@ -1,7 +1,6 @@
 from project import (
     duration,
     holiday,
-    flights,
     hotels,
     hotel_estimate,
     package_estimate,
@@ -20,9 +19,6 @@ def test_holiday():
     assert holiday("Hotels") == "Hotels"
     assert holiday("Both") == "Both"
     assert holiday("Something") == "This is not a valid option"
-
-
-def test_flight(): ...
 
 
 def test_hotels():
