@@ -178,13 +178,17 @@ def hotels(city, tier):
 def hotel_estimate(x, y, city, tier):
     # For hotel only, multiply number of days per night cost, based on hotel range selection
     stay = int(duration(x, y)) * int(hotels(city, tier))
-    return f"€{stay:,.2f}"
+    return f"{stay} €"
 
 
-def package_estimate():
+def package_estimate(flight, hotel):
     # For hotel + flight
     # Get total from flight_estimate and add it to hotel_estimate
-    ...
+    price = 0
+    f_price, eur = flight.split(" ")
+    h_price, eur = hotel.split(" ")
+    price = int(f_price) + int(h_price)
+    return f"{price} €"
 
 
 if __name__ == "__main__":
