@@ -3,7 +3,6 @@ from project import (
     holiday,
     hotels,
     hotel_estimate,
-    package_estimate,
 )
 import pytest
 
@@ -27,9 +26,5 @@ def test_hotels():
 
 
 def test_hotel_estimate():
-    assert hotel_estimate("2024-09-10", "2024-09-20", "Lisboa", "Mid") == "1200 €"
-    assert hotel_estimate("2024-09-10", "2024-09-20", "Dublin", "High") == "2500 €"
-
-
-def test_package_estimate():
-    assert package_estimate("1000 €", "500 €") == "1500 €"
+    assert hotel_estimate("2024-09-10", "2024-09-20", "Lisboa", "Mid") == 1200
+    assert hotel_estimate("2024-09-10", "2024-09-20", "Dublin", "High") == 2500
