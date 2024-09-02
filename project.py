@@ -74,15 +74,20 @@ def main():
                 )
                 # If user wants flights, present flights estimate from API
                 if option == "Flights":
-                    origin = input("Where are you flying from? ")
+                    origin = input("Where are you flying from? ").strip().capitalize()
                     print(flights(origin, city_code, departDate, returnDate))
                 # If user wants hotels, prompt user for hotel tier and present price
                 if option == "Hotels":
                     tier = input("Hotel tier, Low, Mid or High? ").strip().capitalize()
-                    print(hotel_estimate(departDate, returnDate, city, tier))
+                    print(hotel_estimate(departDate, returnDate, city, tier), "€")
                 # If user wants both, present sum of hotels and flights estimates
                 if option == "Both":
-                    print(holiday(option))
+                    origin = input("Where are you flying from? ").strip().capitalize()
+                    tier = input("Hotel tier, Low, Mid or High? ").strip().capitalize()
+                    print(
+                        package_estimate(departDate, returnDate, city, tier, origin),
+                        "€",
+                    )
                 break
             # If the user has not typed a valid city after 3 tries, exit
             if city not in destinations:
@@ -94,11 +99,11 @@ def main():
             sys.exit("Invalid input")
 
 
-def duration(x, y):
+def duration(departDate, returnDate):
     # If dates are valid, convert to iso
     try:
-        departDate = date.fromisoformat(x)
-        returnDate = date.fromisoformat(y)
+        departDate = date.fromisoformat(departDate)
+        returnDate = date.fromisoformat(returnDate)
 
     # If date is not valid, exit
     except:
@@ -175,20 +180,20 @@ def hotels(city, tier):
                     return row[3]
 
 
-def hotel_estimate(x, y, city, tier):
+def hotel_estimate(departDate, returnDate, city, tier):
     # For hotel only, multiply number of days per night cost, based on hotel range selection
-    stay = int(duration(x, y)) * int(hotels(city, tier))
-    return f"{stay} €"
+    stay = int(duration(departDate, returnDate)) * int(hotels(city, tier))
+    return stay
 
 
-def package_estimate(flight, hotel):
+def package_estimate(departDate, returnDate, city, tier, origin):
     # For hotel + flight
     # Get total from flight_estimate and add it to hotel_estimate
     price = 0
-    f_price, eur = flight.split(" ")
-    h_price, eur = hotel.split(" ")
-    price = int(f_price) + int(h_price)
-    return f"{price} €"
+    f_price = flights(origin, city, departDate, returnDate)
+    h_price = hotel_estimate(departDate, returnDate, city, tier)
+    price = f_price + h_price
+    return price
 
 
 if __name__ == "__main__":
