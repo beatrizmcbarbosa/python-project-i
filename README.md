@@ -42,8 +42,6 @@ Function 4 retrieves hotel prices per night from csv file based on location and 
 
 Function 5 calculates hotel total cost.
 
-Function 5 calculates package cost.
-
 ### Built With
 * [![Python][Python]][Python-url]
 
