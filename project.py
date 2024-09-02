@@ -84,10 +84,13 @@ def main():
                 if option == "Both":
                     origin = input("Where are you flying from? ").strip().capitalize()
                     tier = input("Hotel tier, Low, Mid or High? ").strip().capitalize()
+                    print("Flight:", flights(origin, city_code, departDate, returnDate))
                     print(
-                        package_estimate(departDate, returnDate, city, tier, origin),
+                        "Hotel:",
+                        hotel_estimate(departDate, returnDate, city, tier),
                         "€",
                     )
+                    print("Thanks for using our program today!")
                 break
             # If the user has not typed a valid city after 3 tries, exit
             if city not in destinations:
@@ -184,17 +187,6 @@ def hotel_estimate(departDate, returnDate, city, tier):
     # For hotel only, multiply number of days per night cost, based on hotel range selection
     stay = int(duration(departDate, returnDate)) * int(hotels(city, tier))
     return stay
-
-
-def package_estimate(departDate, returnDate, city, tier, origin):
-    # For hotel + flight
-    # Get total from flight_estimate and add it to hotel_estimate
-    price = 0
-    flight = flights(origin, city, departDate, returnDate)
-    f_price, eur = flight.split(" ")
-    h_price = hotel_estimate(departDate, returnDate, city, tier)
-    price = int(f_price) + h_price
-    return price
 
 
 if __name__ == "__main__":
