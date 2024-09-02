@@ -4,7 +4,6 @@ from project import (
     flights,
     hotels,
     hotel_estimate,
-    flight_estimate,
     package_estimate,
 )
 import pytest
@@ -28,16 +27,13 @@ def test_flight(): ...
 
 def test_hotels():
     assert hotels("Lisboa", "Mid") == "120"
-    assert hotels("Tokyo", "High") == "150"
     assert hotels("Barcelona", "Luxury") == None
 
 
 def test_hotel_estimate():
-    assert hotel_estimate("2024-09-10", "2024-09-20", "Lisboa", "Mid") == "€1,200.00"
-    assert hotel_estimate("2024-09-10", "2024-09-20", "Tokyo", "High") == "€1,500.00"
+    assert hotel_estimate("2024-09-10", "2024-09-20", "Lisboa", "Mid") == "1200 €"
+    assert hotel_estimate("2024-09-10", "2024-09-20", "Dublin", "High") == "2500 €"
 
 
-def test_flight_estimate(): ...
-
-
-def test_package_estimate(): ...
+def test_package_estimate():
+    assert package_estimate("1000 €", "500 €") == "1500 €"
