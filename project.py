@@ -21,7 +21,7 @@ destinations = {
     "Ljubljana": {"name": "Ljubljana", "IATA": "LJU"},
     "Madrid": {"name": "Madrid", "IATA": "MAD"},
     "Nicosia": {"name": "Nicosia", "IATA": "NIC"},
-    "Paris": {"name": "PARIS", "IATA": "CDG"},
+    "Paris": {"name": "Paris", "IATA": "CDG"},
     "Prague": {"name": "Prague", "IATA": "PRG"},
     "Riga": {"name": "Riga", "IATA": "RIX"},
     "Rome": {"name": "Rome", "IATA": "FCO"},
@@ -190,9 +190,10 @@ def package_estimate(departDate, returnDate, city, tier, origin):
     # For hotel + flight
     # Get total from flight_estimate and add it to hotel_estimate
     price = 0
-    f_price = flights(origin, city, departDate, returnDate)
+    flight = flights(origin, city, departDate, returnDate)
+    f_price, eur = flight.split(" ")
     h_price = hotel_estimate(departDate, returnDate, city, tier)
-    price = f_price + h_price
+    price = int(f_price) + h_price
     return price
 
 
