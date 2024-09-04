@@ -38,10 +38,6 @@ destinations = {
 options = {"Flights", "Hotels", "Both"}
 
 
-# Missing: typehints
-# Missing: docstring
-
-
 def main():
     tries = 0
     # Display destination options
@@ -103,6 +99,15 @@ def main():
 
 
 def duration(departDate, returnDate):
+    """
+    Return duration of stay in days
+
+    :param departDate: Departure date
+    :param returnDate: Return date
+    :type: string
+    :return: An int with number of days from departure to return
+    :rtype: int
+    """
     # If dates are valid, convert to iso
     try:
         departDate = date.fromisoformat(departDate)
