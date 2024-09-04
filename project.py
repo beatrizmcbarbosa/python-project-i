@@ -100,7 +100,7 @@ def main():
 
 def duration(departDate, returnDate):
     """
-    Return duration of stay in days
+    Return duration of stay in days.
 
     :param departDate: Departure date
     :param returnDate: Return date
@@ -122,7 +122,7 @@ def duration(departDate, returnDate):
 
 def holiday(option):
     """
-    Validate if holiday option chosen by user is part of the holiday options available
+    Validate if holiday option chosen by user is part of the holiday options available.
 
     :param option: holiday options, being it Flights, Hotels and Both
     :type: string
@@ -137,8 +137,18 @@ def holiday(option):
 
 
 def flights(fromEntityId, toEntityId, departDate, returnDate):
-    # Retrieve flight prices for origin, destination, and dates
+    """
+    Return flight prices for return flight for origin and destination given, as well as departure and return dates.
 
+    :param fromEntityId: Departure city/airport
+    :param toEntityId: Destination city/airport
+    :param departDate: Departure date
+    :param returnDate: Return date
+    :type: string
+    :return: A string with the flight price and currency for the data given by the user
+    :rtype: str
+    """
+    # Retrieve flight prices for origin, destination, and dates
     url = "https://sky-scanner3.p.rapidapi.com/flights/search-multi-city"
 
     payload = {
