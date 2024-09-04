@@ -42,6 +42,8 @@ Function 4 retrieves hotel prices per night from csv file based on location and 
 
 Function 5 calculates hotel total cost.
 
+Note on Function 3: the API key is hidden for this function. It is recommended you get your own API key from Rapid API, which you can get by subscribing to the API "Sky Scanner"
+
 ### Built With
 * [![Python][Python]][Python-url]
 
