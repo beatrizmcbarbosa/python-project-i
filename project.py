@@ -121,6 +121,14 @@ def duration(departDate, returnDate):
 
 
 def holiday(option):
+    """
+    Validate if holiday option chosen by user is part of the holiday options available
+
+    :param option: holiday options, being it Flights, Hotels and Both
+    :type: string
+    :return: Validation of option
+    :rtype: string
+    """
     # If user holiday choice is available, return it
     if option in options:
         return option
