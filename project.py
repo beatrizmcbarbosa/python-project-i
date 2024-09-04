@@ -193,6 +193,15 @@ def flights(fromEntityId, toEntityId, departDate, returnDate):
 
 
 def hotels(city, tier):
+    """
+    Return hotel price per night based on tier chosen extracted from csv file.
+
+    :param city: Departure city
+    :param tier: Hotel tier, it Low, Mid and High
+    :type: string
+    :return: An int with the price per night for that location and tier
+    :rtype: int
+    """
     # Read csv file, find rows with {city} and return the prices
     with open("hotels.csv", newline="") as file:
         reader = csv.reader(file)
