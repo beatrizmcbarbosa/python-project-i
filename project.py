@@ -53,7 +53,6 @@ def main():
             if city in destinations:
                 city_code = destinations[city]["IATA"]
                 print(f"Thanks for choosing {city}!")
-                print(city_code)
 
                 departDate = input(
                     f"When would you like to go?\nPlease answer in the format YYYY-MM-DD: "
@@ -71,7 +70,8 @@ def main():
                 # If user wants flights, present flights estimate from API
                 if option == "Flights":
                     origin = input("Where are you flying from? ").strip().capitalize()
-                    print(flights(origin, city_code, departDate, returnDate))
+                    origin_code = destinations[origin]["IATA"]
+                    print(flights(origin_code, city_code, departDate, returnDate))
                 # If user wants hotels, prompt user for hotel tier and present price
                 if option == "Hotels":
                     tier = input("Hotel tier, Low, Mid or High? ").strip().capitalize()
@@ -79,8 +79,12 @@ def main():
                 # If user wants both, present sum of hotels and flights estimates
                 if option == "Both":
                     origin = input("Where are you flying from? ").strip().capitalize()
+                    origin_code = destinations[origin]["IATA"]
                     tier = input("Hotel tier, Low, Mid or High? ").strip().capitalize()
-                    print("Flight:", flights(origin, city_code, departDate, returnDate))
+                    print(
+                        "Flight:",
+                        flights(origin_code, city_code, departDate, returnDate),
+                    )
                     print(
                         "Hotel:",
                         hotel_estimate(departDate, returnDate, city, tier),
