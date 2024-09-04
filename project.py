@@ -196,7 +196,7 @@ def hotels(city, tier):
     """
     Return hotel price per night based on tier chosen extracted from csv file.
 
-    :param city: Departure city
+    :param city: Destination location
     :param tier: Hotel tier, it Low, Mid and High
     :type: string
     :return: An int with the price per night for that location and tier
@@ -216,6 +216,17 @@ def hotels(city, tier):
 
 
 def hotel_estimate(departDate, returnDate, city, tier):
+    """
+    Return hotel price for the duration of the stay.
+
+    :param departDate: Departure date
+    :param returnDate: Return date
+    :param city: Destination location
+    :param tier: Hotel tier
+    :type: string
+    :return: An int with the hotel price for the full duration of the stay
+    :rtype: int
+    """
     # For hotel only, multiply number of days per night cost, based on hotel range selection
     stay = int(duration(departDate, returnDate)) * int(hotels(city, tier))
     return stay
